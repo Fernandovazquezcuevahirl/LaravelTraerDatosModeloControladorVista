@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [UserController::class,'ObtenerDatos']);
+
+Route::get('/custom', function(){
+    $msj = 'mesaje desde routes web';
+    $hola = "hola";
+
+    $data = ['hola' => $hola, "adios" => "adios"];
+
+    return view('custom',$data,['mensaje' => $msj, "edad" => 15]);
+
 });
